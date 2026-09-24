@@ -34,6 +34,7 @@ npm start            # 默认 8787 端口，绑定 0.0.0.0
 ```
 
 ### 便携包（Windows，免安装，可拷贝到其它电脑）
+安装包文件在packaging这个文件里面
 包内结构：`LocalPhotoVault.exe` + `server\`（内嵌 Web 服务，含 `node.exe`）+ 三个脚本（`启动LocalPhotoVault.bat`、`firewall-allow.cmd`、`网络诊断.bat`）。
 
 - 双击 **`启动LocalPhotoVault.bat`** 即可（会自动做三件事：清理残留旧服务 → 首次运行放行防火墙 8787 → 启动应用）
