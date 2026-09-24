@@ -1,0 +1,81 @@
+// LocalPhotoVault 数据库设计
+// 阶段二：Photo 表扩展（EXIF 摄影参数、评分/收藏、kind 类型、Tag 多对多）；
+// sha256 由 @unique 改为普通索引（同一内容磁盘一份、图库多条记录）。
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Setting {
+  key   String @id
+  value String
+}
+
+model Photo {
+  id           String    @id @default(cuid())
+  sha256       String
+  storedName   String
+  originalName String
+  mimeType     String
+  kind         String    @default("image")
+  sizeBytes    BigInt
+  width        Int?
+  height       Int?
+  takenAt      DateTime?
+  cameraMake   String?
+  cameraModel  String?
+  lensModel    String?
+  focalLength  Float?
+  fNumber      Float?
+  exposureTime String?
+  iso          Int?
+  gpsLat       Float?
+  gpsLon       Float?
+  rating       Int       @default(0)
+  favorite     Boolean   @default(false)
+  exif         String?
+  deletedAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  tags         Tag[]
+  albums       Album[]
+
+  @@index([sha256])
+  @@index([takenAt])
+  @@index([deletedAt])
+  @@index([cameraModel])
+  @@index([lensModel])
+  @@index([rating])
+  @@index([favorite])
+  @@index([takenAt, id])
+  @@index([createdAt, id])
+}
+
+model Tag {
+  id     String  @id @default(cuid())
+  name   String  @unique
+  photos Photo[]
+}
+
+model Album {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  photos    Photo[]
+}
+
+model BackupRecord {
+  id            String   @id @default(cuid())
+  filePath      String
+  archiveSha256 String
+  fileCount     Int
+  totalSize     BigInt
+  photoCount    Int
+  status        String
+  createdAt     DateTime @default(now())
+}

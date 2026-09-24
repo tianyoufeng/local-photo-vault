@@ -1,0 +1,11 @@
+- generic [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - heading "LocalPhotoVault" [level=1] [ref=e4]
+      - paragraph [ref=e5]: 输入密码进入相册
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: 密码
+          - textbox "密码" [active] [ref=e9]
+        - button "登录" [ref=e10] [cursor=pointer]
+  - alert [ref=e11]

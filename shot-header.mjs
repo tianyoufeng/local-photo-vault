@@ -1,0 +1,14 @@
+import { chromium } from "playwright-core";
+const BASE = "http://127.0.0.1:8787";
+const browser = await chromium.launch({ channel: "msedge", headless: true });
+const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+await page.goto(BASE + "/login");
+await page.fill("#password", "test-1234");
+await page.click("button:has-text('登录')");
+await page.waitForURL(BASE + "/");
+await page.waitForLoadState("networkidle");
+await page.waitForTimeout(800);
+const header = await page.evaluate(() => document.querySelector("header, main")?.innerText?.slice(0, 200));
+console.log("header text:", header?.replace(/\n/g, " | "));
+await page.screenshot({ path: ".accept-shots/header.png" });
+await browser.close();

@@ -1,0 +1,9 @@
+{
+  "identifier": "default",
+  "description": "LocalPhotoVault 主窗口默认能力（含远程加载的 Web 服务页面）",
+  "windows": ["main"],
+  "remote": {
+    "urls": ["http://127.0.0.1:*", "http://localhost:*"]
+  },
+  "permissions": ["core:default", "notification:default"]
+}

@@ -1,0 +1,10 @@
+node_modules
+.next
+src-tauri/target
+src-tauri/gen
+.git
+*.log
+.accept-*
+accept*.js
+verify-*.mjs
+accept-shots

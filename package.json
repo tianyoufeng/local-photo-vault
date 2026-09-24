@@ -1,0 +1,40 @@
+{
+  "name": "local-photo-vault",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LocalPhotoVault - 本地照片管理应用（原图无损 + 局域网访问）",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 -p 8787",
+    "build": "prisma generate && next build",
+    "start": "next start -H 0.0.0.0 -p 8787",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-notification": "^2.4.0",
+    "@types/qrcode": "^1.5.6",
+    "exifr": "^7.1.3",
+    "heic-convert": "^2.1.0",
+    "next": "14.2.15",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.35.4",
+    "tar": "^7.5.22"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.4"
+  }
+}
